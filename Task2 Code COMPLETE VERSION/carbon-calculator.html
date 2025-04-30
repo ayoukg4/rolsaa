@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Carbon Footprint Calculator</title>
+</head>
+<body>
+
+<!-- HEADER -->
+<header> 
+  <div class="logo">
+    <img src="images/logo.png" alt="Rolsa Logo">
+  </div>
+  <nav>
+    <ul class="service-nav active">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Smart Home Management</a></li>
+      <li><a href="services.html">EV Charging Stations</a></li>
+      <li><a href="services.html">Solar Installations & Bookings</a></li>
+      <li><a href="services.html">Carbon Footprint Calculator</a></li>
+    </ul>
+  </nav>
+  <div class="profile">
+    <a href="profile.html">
+      <img src="images/profile.png" alt="Profile">
+    </a>
+  </div>
+</header>
+
+<main class="carbon-container">
+  <h1>Carbon Footprint Calculator</h1>
+  <form id="carbonForm">
+    <div class="input-group">
+      <label for="transport">Weekly car travel (miles):</label>
+      <input type="number" id="transport" placeholder="e.g. 150" required />
+    </div>
+
+    <div class="input-group">
+      <label for="electricity">Monthly electricity use (kWh):</label>
+      <input type="number" id="electricity" placeholder="e.g. 300" required />
+    </div>
+
+    <div class="input-group">
+      <label for="gas">Monthly gas use (kWh):</label>
+      <input type="number" id="gas" placeholder="e.g. 250" required />
+    </div>
+
+    <div class="input-group">
+      <label for="flights">Flights per year:</label>
+      <input type="number" id="flights" placeholder="e.g. 3" required />
+    </div>
+
+    <button type="submit">Calculate</button>
+  </form>
+
+  <section id="resultSection" class="results" style="display:none;">
+    <h2>Your Estimated Carbon Footprint:</h2>
+    <p id="resultText"></p>
+    <p id="resultAdvice"></p>
+  </section>
+
+  <canvas id="carbonChart" width="400" height="400"></canvas>
+</main>
+
+<script>
+let carbonChart;
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("carbonForm");
+  const resultSection = document.getElementById("resultSection");
+  const resultText = document.getElementById("resultText");
+  const resultAdvice = document.getElementById("resultAdvice");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const transport = parseFloat(document.getElementById("transport").value) || 0;
+    const electricity = parseFloat(document.getElementById("electricity").value) || 0;
+    const gas = parseFloat(document.getElementById("gas").value) || 0;
+    const flights = parseInt(document.getElementById("flights").value) || 0;
+
+    const carFootprint = transport * 0.21 * 52 / 1000;
+    const electricFootprint = electricity * 0.233 * 12 / 1000;
+    const gasFootprint = gas * 0.184 * 12 / 1000;
+    const flightFootprint = flights * 0.25;
+
+    const total = (carFootprint + electricFootprint + gasFootprint + flightFootprint).toFixed(2);
+
+    resultText.textContent = `${total} tonnes of CO₂ per year`;
+
+    if (total < 4) {
+      resultAdvice.textContent = "✅ Nice one! You're living pretty eco-friendly.";
+      resultSection.style.borderLeftColor = "#2ecc71";
+      resultSection.style.backgroundColor = "#f4fef9";
+    } else if (total < 8) {
+      resultAdvice.textContent = "🟡 Not bad, but there's room for improvement.";
+      resultSection.style.borderLeftColor = "#f1c40f";
+      resultSection.style.backgroundColor = "#fffde8";
+    } else {
+      resultAdvice.textContent = "🔴 High carbon footprint. Try using more green energy.";
+      resultSection.style.borderLeftColor = "#e74c3c";
+      resultSection.style.backgroundColor = "#fff0f0";
+    }
+
+    resultSection.style.display = "block";
+
+    if (carbonChart) {
+      carbonChart.destroy();
+    }
+
+    const ctx = document.getElementById("carbonChart").getContext("2d");
+    carbonChart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Car Travel", "Electricity", "Gas", "Flights"],
+        datasets: [{
+          data: [
+            carFootprint.toFixed(2),
+            electricFootprint.toFixed(2),
+            gasFootprint.toFixed(2),
+            flightFootprint.toFixed(2)
+          ],
+          backgroundColor: ["#3498db", "#9b59b6", "#f39c12", "#e74c3c"]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.label}: ${context.raw} tonnes`;
+              }
+            }
+          }
+        }
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

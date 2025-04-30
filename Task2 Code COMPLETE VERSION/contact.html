@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Rolsa Technologies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png"> 
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Rolsa Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"> Home </a></li>
+                <li><a href="services.html">Smart Home Management</a></li>
+                <li><a href="services.html">EV Charging Stations</a></li>
+                <li><a href="services.html">Solar Installations & Bookings</a></li>
+                <li><a href="services.html">Carbon Footprint Calculator</a></li>
+            </ul>
+        </nav>
+        <a href="login.html" class="login-btn">LOGIN / SIGN UP</a>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-container">
+        <h1>Get in Touch</h1>
+        
+        <div class="contact-content">
+            <div class="contact-form">
+                <h2>Send Us a Message We Will Love to Hear From You. </h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required> 
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="smart-home">Smart Home Management</option>
+                            <option value="ev-charging">EV Charging Stations</option>
+                            <option value="solar-installations">Solar Installations & Bookings</option>
+                            <option value="carbon-footprint">Carbon Footprint Calculator</option>
+                            <option value="general-inquiry">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" rows="8" maxlength="500" required></textarea>
+                        <span id="char-counter">0/500 characters</span>
+                    </div>
+                    <div class="form-group button-group">
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Live Chat Section -->
+            <div  Live Chat Section -->
+                <div class="live-chat">
+                    <h2>Live Chat with Agent</h2>
+                    <p>Our support team is available to assist you! Start chatting with an agent now.</p>
+                    <button class="live-chat-btn" onclick="startChat()">Start Chat</button>
+                </div>
+    
+                <!-- Tawk.to Script -->
+                <script type="text/javascript">
+                    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+                    (function() {
+                        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                        s1.async = true;
+                        s1.src = 'https://embed.tawk.to/67ea62fbed09f71909aab019/1inlp5a7q';
+                        s1.charset = 'UTF-8';
+                        s1.setAttribute('crossorigin', '*');
+                        s0.parentNode.insertBefore(s1, s0);
+                    })();
+    
+                    function startChat() {
+                        Tawk_API.toggle(); // This will toggle the visibility of the Tawk.to chat widget
+                    }
+                </script>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="FAQs.html"> FAQs </a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="mailto:info@rolsatechnologies.co.uk">info@RolsaTechnologies.co.uk</a></p>
+                <p>Phone: +44 123 456 7890</p>
+                <p>Address: GR1 2TH, 123 Green Street, Liverpool, UK</p>
+                    <span class="info-label">Hours:</span>
+                    <p>Monday - Friday: 9AM - 6PM<br>Saturday: 10AM - 4PM<br>Sunday: Closed</p>
+            </div>
+    
+            <!-- Social Media Links -->
+            <div class="social-media">
+                <h2>Follow Us On </h2>
+                <ul>
+                    <li><a href="https://facebook.com/RolsaTech" target="_blank" title="Facebook"><img src="images/facebook.png" alt="Facebook"></a></li>
+                    <li><a href="https://twitter.com/RolsaTech" target="_blank" title="X"><img src="images/X.png" alt="X"></a></li>
+                    <li><a href="https://linkedin.com/company/rolsa" target="_blank" title="LinkedIn"><img src="images/linkedin.png" alt="LinkedIn"></a></li>
+                    <li><a href="https://instagram.com/RolsaTech" target="_blank" title="Instagram"><img src="images/instagram.png" alt="Instagram"></a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="copyright">
+            <p>&copy; 2025 Rolsa Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>

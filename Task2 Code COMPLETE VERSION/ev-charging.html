@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Charging Stations</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <img src="images/logo.png" alt="Rolsa Logo">
+    </div>
+    <nav>
+        <ul class="service-nav active">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Smart Home Management</a></li>
+            
+            <li><a href="services.html">EV Charging Stations</a></li>
+            <li><a href="services.html">Solar Installations & Bookings</a></li>
+            <li><a href="services.html">Carbon Footprint Calculator</a></li>
+        </ul>
+    </nav>
+    <div class="profile">
+        <a href="profile.html">
+            <img src="images/profile.png" alt="Profile">
+        </a>
+    </div>
+</header>
+
+<!-- EV Charging Stations Page Content -->
+<section class="charging-info">
+    <h2>EV Charging Stations</h2>
+
+    <!-- Home Charging Installation Section -->
+    <div class="home-charging">
+        <h3>Home Charging Station Installation</h3>
+        <p>Install an EV charging station at your home. It's easy, efficient, and a great way to power your electric vehicle. 
+        <br>Our team will help you choose the right charger for your needs and install it quickly and safely.</p>
+        <p>We offer a range of home charging solutions, including wall-mounted and portable chargers.</p>
+        <button onclick="window.location.href='#contact-us'">Get a Quote</button>
+    </div>
+
+    <!-- Solar Powered Charging Options Section -->
+    <div class="solar-charging">
+        <h3>Solar-Powered Charging Options</h3>
+        <p>Combine solar panels with your EV charging station to reduce your carbon footprint and lower your energy costs. 
+        <br>Our solar EV chargers are designed to work seamlessly with your home solar system.</p>
+        <p>Charge your electric vehicle using clean, renewable energy from the sun. Our solar EV chargers are designed to work seamlessly with your home solar system.</p>
+        <img src="images/solarev.jpg" alt="solar EV Charger">
+    </div>
+
+    <!-- Public Charging Network Access Section -->
+    <div class="public-charging">
+        <h3>Public Charging Network Access</h3>
+        <p>Find nearby public charging stations through our extensive network.
+        <br>We provide access to thousands of public charging points across the UK, making it easy to charge your EV on the go.</p>
+        <p>Our app helps you locate the nearest charging stations, check availability, and even reserve a spot in advance.</p>
+        <img src="images/publicharging.jpg" alt="public EV Charging">
+    </div>
+
+    <!-- Smart Charging Management Section -->
+    <div class="smart-charging">
+        <h3>Smart Charging Management</h3>
+        <p>Manage your charging times to reduce energy costs, optimize efficiency, and avoid peak demand hours.
+        <br>Our smart charging solutions allow you to schedule charging sessions based on your energy usage patterns.</p>
+        <p>Receive notifications and updates on your charging status through our user-friendly app.</p>
+    </div>
+
+    <!-- Map Section to Display Nearby Chargers -->
+    <div class="charging-map">
+        <h3>Find the Closest Charging Station</h3>
+        <br>Use the map below to locate nearby EV charging stations.</h3>
+        <p>Click on the markers to view details about each station, including availability and charging speed.</p>
+        
+        <div id="map" style="height: 400px;"></div>
+    </div>
+
+    <!-- Request a Quote Section -->
+    <div class="contact-us" id="contact-us">
+        <h3>Request a Quote for Your EV Charger Installation</h3>
+        <form id="quote-form">
+            <label for="location">Location (Home/Office):</label>
+            <input type="text" id="location" name="location" placeholder="Enter your location" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="message">Additional Information:</label>
+            <textarea id="message" name="message" placeholder="Provide additional details" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Our Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="FAQs.html">FAQs</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:info@rolsatechnologies.co.uk">info@RolsaTechnologies.co.uk</a></p>
+            <p>Phone: +44 123 456 7890</p>
+            <p>Address: GR1 2TH, 123 Green Street, Liverpool, UK</p>
+        </div>
+        <div class="social-media">
+            <h2>Follow Us On</h2>
+            <ul>
+                <li><a href="https://facebook.com/RolsaTech" target="_blank"><img src="images/facebook.png" alt="Facebook"></a></li>
+                <li><a href="https://twitter.com/RolsaTech" target="_blank"><img src="images/X.png" alt="X"></a></li>
+                <li><a href="https://linkedin.com/company/rolsa" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a></li>
+                <li><a href="https://instagram.com/RolsaTech" target="_blank"><img src="images/instagram.png" alt="Instagram"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2025 Rolsa Technologies. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="scripts.js"></script>
+
+<!-- Leaflet.js -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    // Initialize and add the map
+    var map = L.map('map').setView([53.4061, -2.9736], 13); // Coordinates for London
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Sample locations for charging stations (dummy data for now)
+    var chargingStations = [
+        {lat: 51.5074, lng: -0.1278, title: "Station 1", description: "Public charging station near the city center."},
+        {lat: 51.5100, lng: -0.1250, title: "Station 2", description: "Home charging station available for installation."},
+        {lat: 51.5130, lng: -0.1180, title: "Station 3", description: "Solar-powered EV charger located nearby."}
+    ];
+
+    // Loop through the charging stations to create markers
+    chargingStations.forEach(function(station) {
+        var marker = L.marker([station.lat, station.lng]).addTo(map)
+            .bindPopup(`<b>${station.title}</b><br>${station.description}`);
+    });
+</script>
+</body>
+</html>
